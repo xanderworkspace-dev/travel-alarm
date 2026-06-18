@@ -79,9 +79,30 @@ h2 { max-width: 760px; margin-bottom: 42px; font-size: clamp(34px, 4.6vw, 58px);
 .research-section .eyebrow { color: #9eaddd; }
 .research-section h2 { margin-bottom: 22px; }
 .research-section p:not(.eyebrow) { max-width: 650px; margin-bottom: 0; color: #c5cce0; font-size: 18px; line-height: 1.6; }
-.research-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .light-button { color: var(--ink); background: var(--cream); }
-.email-link { color: #d7dcef; font-size: 14px; }
+.beta-form { display: grid; gap: 15px; }
+.beta-form label:not(.check-field, .honey-field) { display: grid; gap: 7px; }
+.beta-form label > span { color: #d7dcef; font-size: 13px; font-weight: 600; }
+.beta-form input, .beta-form select, .beta-form textarea {
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 8px;
+  padding: 12px 13px;
+  color: var(--ink);
+  background: #fff;
+  font: 500 14px/1.4 var(--sans);
+}
+.beta-form textarea { resize: vertical; }
+.beta-form input:focus, .beta-form select:focus, .beta-form textarea:focus { outline: 3px solid rgba(158,173,221,.38); border-color: #9eaddd; }
+.check-field { display: grid; grid-template-columns: 18px 1fr; gap: 9px; align-items: start; }
+.check-field input { width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--cream); }
+.check-field span { line-height: 1.4; }
+.honey-field { position: absolute; left: -10000px; }
+.beta-form .primary-button { border: 0; cursor: pointer; }
+.beta-form .primary-button:disabled { opacity: .62; cursor: wait; }
+.research-section .form-status { padding: 12px 14px; border-radius: 8px; color: #e8f5eb; background: rgba(87,176,112,.18); font-size: 14px; line-height: 1.45; }
+.research-section .form-status.error { color: #ffe4df; background: rgba(224,101,79,.18); }
+.research-section .form-privacy { color: #9ea8c1; font-size: 11px; line-height: 1.5; }
 
 footer { width: min(1180px, calc(100% - 48px)); min-height: 100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
 
