@@ -4,6 +4,6 @@ Travel Alarm is a timezone-aware alarm concept for travelers and remote workers.
 
 This repository contains the public research landing page and an interactive web prototype.
 
-Website: https://hickey666.github.io/travel-alarm/
+Website: https://xanderworkspace-dev.github.io/travel-alarm/
 
 Contact: travelalarm.app@gmail.com
