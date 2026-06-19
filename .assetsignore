@@ -1,0 +1,11 @@
+node_modules/
+outputs/
+tools/
+.wrangler/
+.git/
+.claude/
+*.md
+wrangler.jsonc
+package.json
+package-lock.json
+worker.js
