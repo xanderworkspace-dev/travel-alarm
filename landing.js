@@ -1,3 +1,16 @@
+async function saveToNotion(payload) {
+  await fetch("https://travel-alarm.xanderworkspace.workers.dev/api/notion", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
+const demoIframe = document.querySelector("#demo-iframe");
+if (demoIframe) {
+  demoIframe.addEventListener("error", () => demoIframe.classList.add("load-error"));
+}
+
 const betaForm = document.querySelector("#beta-form");
 const formStatus = document.querySelector("#form-status");
 
@@ -24,6 +37,8 @@ betaForm.addEventListener("submit", async (event) => {
     });
 
     if (!response.ok) throw new Error("Submission failed");
+
+    saveToNotion(payload).catch(() => {});
 
     betaForm.reset();
     formStatus.textContent = "Thank you. You are on the beta list, and we will be in touch.";

@@ -59,9 +59,12 @@ h2 { max-width: 760px; margin-bottom: 42px; font-size: clamp(34px, 4.6vw, 58px);
 .text-link { font-weight: 600; text-underline-offset: 5px; }
 .fine-print { margin: 17px 0 0; color: #818895; font-size: 13px; }
 
-.demo-wrap { position: relative; justify-self: center; padding: 14px; border-radius: 47px; background: #151b27; box-shadow: 0 44px 90px rgba(25,31,45,.24); }
+.demo-column { display: flex; flex-direction: column; align-items: center; gap: 24px; justify-self: center; }
+.demo-cta { font-size: 15px; }
+.demo-wrap { position: relative; padding: 14px; border-radius: 47px; background: #151b27; box-shadow: 0 44px 90px rgba(25,31,45,.24); }
 .demo-note { position: absolute; top: -32px; right: 12px; color: #747d8d; font: 600 10px/1 var(--mono); letter-spacing: .12em; }
-.demo-wrap iframe { display: block; width: 393px; height: 760px; border: 0; border-radius: 35px; background: #f7f8fb; }
+.demo-wrap iframe { display: block; width: 393px; height: 760px; border: 0; border-radius: 35px; background: #1e2535; }
+.demo-wrap iframe.load-error { background: #1e2535 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23475066' stroke-width='1.5'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4m0 4h.01'/%3E%3C/svg%3E") center no-repeat; }
 
 .problem-section, .steps-section { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 112px 0; border-top: 1px solid var(--line); }
 .scenario-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
@@ -125,7 +128,8 @@ footer { width: min(1180px, calc(100% - 48px)); min-height: 100px; margin: 0 aut
   .hero-text { font-size: 17px; }
   .hero-actions { flex-direction: column; gap: 18px; }
   .primary-button { width: 100%; }
-  .demo-wrap { width: calc(100vw - 30px); padding: 9px; border-radius: 36px; overflow: hidden; }
+  .demo-column { width: calc(100vw - 30px); }
+  .demo-wrap { width: 100%; padding: 9px; border-radius: 36px; overflow: hidden; }
   .demo-wrap iframe { width: 393px; height: 720px; transform-origin: top left; transform: scale(calc((100vw - 48px) / 393)); margin-bottom: calc(720px * ((100vw - 48px) / 393 - 1)); }
   .problem-section, .steps-section { padding: 80px 0; }
   .research-section { margin-bottom: 30px; padding: 36px 25px; }
