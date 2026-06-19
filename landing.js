@@ -1,8 +1,8 @@
-async function saveToNotion(payload) {
+async function saveToNotion(payload, turnstileToken) {
   await fetch("https://travel-alarm.xanderworkspace.workers.dev/api/notion", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
+    body: JSON.stringify({ ...payload, cf_turnstile_response: turnstileToken }),
   });
 }
 
@@ -21,6 +21,14 @@ betaForm.addEventListener("submit", async (event) => {
   const formData = new FormData(betaForm);
   const payload = Object.fromEntries(formData.entries());
 
+  const turnstileToken = window.turnstile?.getResponse();
+  if (!turnstileToken) {
+    formStatus.textContent = "Verification not ready. Please wait a moment and try again.";
+    formStatus.classList.add("error");
+    formStatus.hidden = false;
+    return;
+  }
+
   submitButton.disabled = true;
   submitButton.textContent = "Sending...";
   formStatus.hidden = true;
@@ -38,7 +46,7 @@ betaForm.addEventListener("submit", async (event) => {
 
     if (!response.ok) throw new Error("Submission failed");
 
-    saveToNotion(payload).catch(() => {});
+    saveToNotion(payload, turnstileToken).catch(() => {});
 
     betaForm.reset();
     formStatus.textContent = "Thank you. You are on the beta list, and we will be in touch.";

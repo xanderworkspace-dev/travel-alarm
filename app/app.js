@@ -2,8 +2,6 @@ const STORAGE_KEY = "travel-passport-alarms-v2";
 const MINUTE_HEIGHT = 46;
 const IS_DAY_NIGHT_DEMO = new URLSearchParams(window.location.search).get("demo") === "day-night";
 const DESIGN_PREVIEW_LOCAL_ZONE = IS_DAY_NIGHT_DEMO ? "Europe/London" : "";
-const DEMO_BASE_TIME = Date.parse("2026-06-18T15:38:00Z");
-const demoStartedAt = Date.now();
 
 const ZONES = [
   { id: "America/Los_Angeles", city: "Los Angeles", code: "LAX" },
@@ -69,8 +67,7 @@ let clockTimer = null;
 let wheelTimer = null;
 
 function clockNow() {
-  if (!IS_DAY_NIGHT_DEMO) return new Date();
-  return new Date(DEMO_BASE_TIME + Date.now() - demoStartedAt);
+  return new Date();
 }
 
 function getLocalZone() {

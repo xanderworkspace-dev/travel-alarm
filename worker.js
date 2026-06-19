@@ -4,6 +4,16 @@ const CORS = {
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
+async function verifyTurnstile(token, secret, ip) {
+  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ secret, response: token, remoteip: ip }),
+  });
+  const data = await res.json();
+  return data.success === true;
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -13,6 +23,13 @@ export default {
       if (request.method !== "POST") return new Response("Method not allowed", { status: 405 });
 
       const payload = await request.json();
+
+      const valid = await verifyTurnstile(
+        payload.cf_turnstile_response,
+        env.TURNSTILE_SECRET,
+        request.headers.get("CF-Connecting-IP"),
+      );
+      if (!valid) return new Response("Forbidden", { status: 403, headers: CORS });
 
       const res = await fetch("https://api.notion.com/v1/pages", {
         method: "POST",
